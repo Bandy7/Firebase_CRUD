@@ -61,8 +61,7 @@ class SharedViewModel(): ViewModel() {
     fun deleteData(
         userID: String,
         context: Context,
-        navController: NavController,
-        backToMainScreen: ()-> Unit
+        navController: NavController
     ) = CoroutineScope(Dispatchers.IO).launch {
 
         val fireStoreRef = Firebase.firestore
@@ -72,7 +71,7 @@ class SharedViewModel(): ViewModel() {
         try {
             fireStoreRef.delete()
                 .addOnSuccessListener {
-                    Toast.makeText(context, "Successfully saved Data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Successfully Deleted Data", Toast.LENGTH_SHORT).show()
                     navController.popBackStack()
                 }
         } catch (e: Exception){
